@@ -5,13 +5,15 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon index.js"
+    "start": "nodemon index.js",
+    "build": "./node_modules/.bin/netlify-lambda build src/index.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.3",
     "mongoose": "^6.2.4",
+    "netlify-lambda": "^2.0.15",
     "nodemon": "^2.0.15"
   }
 }
