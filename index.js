@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 
-const hutangRoutes = require('./routes/hutang');
+const hutangRoutes = require('./src/routes/hutang');
 
 // handle cors header
 app.use((req, res, next) => {
