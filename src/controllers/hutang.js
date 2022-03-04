@@ -3,7 +3,7 @@ const {validationResult} = require('express-validator');
 const TransaksiHutang = require('../models/hutang');
 
 exports.getListHutang = (req, res, next) => {
-    TransaksiHutang.find()
+    TransaksiHutang.find({status: {$in:0}})
         .then((hutangs) => {
             res.status(200).json({
                 message: 'Data Hutang berhasil diambil',
