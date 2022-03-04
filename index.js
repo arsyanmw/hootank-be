@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
 
 const hutangRoutes = require('./src/routes/hutang');
 
@@ -12,9 +13,22 @@ app.use((req, res, next) => {
     next();
 });
 
+app.use(bodyParser.json());
+
 app.use('/', hutangRoutes);
 
-mongoose.connect('mongodb+srv://arsyan:FdjMdxQ60Rs76AQh@cluster0.dufwc.mongodb.net/myFirstDatabase?retryWrites=true&w=majority')
+app.use((err, req, res, next) => {
+    const status = err.statusShop || 500;
+    const message = err.message;
+    const data = err.data;
+
+    res.status(status).json({
+        message: message,
+        data: data
+    });
+});
+
+mongoose.connect('mongodb+srv://arsyan:FdjMdxQ60Rs76AQh@cluster0.dufwc.mongodb.net/hutang?retryWrites=true&w=majority')
     .then(() => {
         app.listen(process.env.PORT || 3030);
     })
