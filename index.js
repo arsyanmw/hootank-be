@@ -20,6 +20,9 @@ app.use('/hutang', hutangRoutes);
 app.use('/sudah-bayar', sudahBayarRoutes);
 
 app.use((err, req, res) => {
+    console.log(err);
+    console.log(req);
+    console.log(res);
     const status = err.statusShop || 500;
     const message = err.message;
     const data = err.data;
