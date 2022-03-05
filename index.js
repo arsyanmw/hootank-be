@@ -19,16 +19,16 @@ app.use(bodyParser.json());
 app.use('/hutang', hutangRoutes);
 app.use('/sudah-bayar', sudahBayarRoutes);
 
-app.use((err, req, res) => {
-    const status = err.statusShop || 500;
-    const message = err.message;
-    const data = err.data;
-
-    // res.status(status).json({
-    //     message: message,
-    //     data: data
-    // });
-});
+// app.use((err, req, res) => {
+//     const status = err.statusShop || 500;
+//     const message = err.message;
+//     const data = err.data;
+//
+//     res.status(status).json({
+//         message: message,
+//         data: data
+//     });
+// });
 
 mongoose.connect('mongodb+srv://arsyan:FdjMdxQ60Rs76AQh@cluster0.dufwc.mongodb.net/hutang?retryWrites=true&w=majority')
     .then(() => {
