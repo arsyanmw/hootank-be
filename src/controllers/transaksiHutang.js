@@ -1,12 +1,25 @@
 const {validationResult} = require('express-validator');
 
-const TransaksiHutang = require('../models/hutang');
+const TransaksiHutang = require('../models/transaksiHutang');
 
 exports.getListHutang = (req, res, next) => {
     TransaksiHutang.find({status: {$in:0}})
         .then((hutangs) => {
             res.status(200).json({
                 message: 'Data Hutang berhasil diambil',
+                data: hutangs
+            });
+        })
+        .catch(err => {
+            next(err);
+        });
+};
+
+exports.getListHutangLunas = (req, res, next) => {
+    TransaksiHutang.find({status: {$in:1}})
+        .then((hutangs) => {
+            res.status(200).json({
+                message: 'Data Hutang Lunas berhasil diambil',
                 data: hutangs
             });
         })

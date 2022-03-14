@@ -1,5 +1,5 @@
 const SudahBayar = require('../models/sudahBayar');
-const TransaksiHutang = require('../models/hutang');
+const TransaksiHutang = require('../models/transaksiHutang');
 
 exports.addSudahBayar = (req, res) => {
     let dataHutang = "";
