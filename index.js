@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 
 const hutangRoutes = require('./src/routes/hutang');
 const sudahBayarRoutes = require('./src/routes/sudahBayar');
+const produkRoutes = require('./src/routes/produk');
 
 // handle cors header
 app.use((req, res, next) => {
@@ -18,9 +19,10 @@ app.use(bodyParser.json());
 
 app.use('/hutang', hutangRoutes);
 app.use('/sudah-bayar', sudahBayarRoutes);
+app.use('/produk', produkRoutes);
 
 app.use((err, req, res) => {
-    const status = err.statusShop || 500;
+    const status = err.statusCode || 500;
     const message = err.message;
     const data = err.data;
 
