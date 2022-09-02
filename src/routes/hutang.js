@@ -18,4 +18,7 @@ router.post(
     ],
     hutangController.addHutang);
 
+//DELETE
+router.delete('/:hutangId', hutangController.deleteHutang);
+
 module.exports = router;

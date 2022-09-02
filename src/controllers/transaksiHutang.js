@@ -1,6 +1,7 @@
 const {validationResult} = require('express-validator');
 
 const TransaksiHutang = require('../models/transaksiHutang');
+const SudahBayar = require('../models/sudahBayar');
 
 exports.getListHutang = (req, res, next) => {
     TransaksiHutang.find({status: {$in:0}})
@@ -50,6 +51,26 @@ exports.addHutang = (req, res, next) => {
                 message: 'Data Hutang berhasil ditambahkan',
                 data: result
             });
+        })
+        .catch(err => {
+            next(err);
+        });
+};
+
+exports.deleteHutang = (req, res, next) => {
+    const idHutang = req.params.hutangId;
+
+    TransaksiHutang.deleteOne({_id: idHutang})
+        .then(() => {
+            SudahBayar.deleteOne({hutangs_ids: idHutang})
+                .then(() => {
+                    res.status(200).json({
+                        message: 'Data Hutang berhasil dihapus',
+                    });
+                })
+                .catch(err => {
+                    next(err);
+                });
         })
         .catch(err => {
             next(err);
