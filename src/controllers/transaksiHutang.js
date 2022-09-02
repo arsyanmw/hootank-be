@@ -16,7 +16,7 @@ exports.getListHutang = (req, res, next) => {
 };
 
 exports.getListHutangLunas = (req, res, next) => {
-    TransaksiHutang.find({status: {$in:1}})
+    TransaksiHutang.find({status: {$in:1}}).sort({createdAt: -1})
         .then((hutangs) => {
             res.status(200).json({
                 message: 'Data Hutang Lunas berhasil diambil',
