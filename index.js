@@ -35,9 +35,9 @@ app.use((err, req, res) => {
     });
 });
 
-mongoose.connect('mongodb+srv://arsyan:FdjMdxQ60Rs76AQh@cluster0.dufwc.mongodb.net/hutang?retryWrites=true&w=majority')
+mongoose.connect(DB_URL)
     .then(() => {
-        app.listen(process.env.PORT || 3030);
+        app.listen(PORT || 3030);
     })
     .catch((err) => {
         console.log('Connection failed!', err);
