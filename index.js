@@ -2,6 +2,9 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+require('dotenv').config();
+
+const { DB_URL, PORT } = process.env;
 
 const hutangRoutes = require('./src/routes/hutang');
 const sudahBayarRoutes = require('./src/routes/sudahBayar');
